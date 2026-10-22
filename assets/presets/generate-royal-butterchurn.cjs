@@ -37,8 +37,8 @@ const comp = `shader_body {
               + texture(sampler_main, uv_echo + ca_offset).xyz) * 0.5;
   ret = vec3(col_r.r, col_g.g, col_b.b);
   ret *= 2.0;
-  ret += texture(sampler_blur3, uv).xyz * 2.0;
-  ret += texture(sampler_blur3, uv_echo).xyz * 2.0;
+  ret += (texture(sampler_blur3, uv).xyz * scale3 + vec3(bias3)) * 2.0;
+  ret += (texture(sampler_blur3, uv_echo).xyz * scale3 + vec3(bias3)) * 2.0;
 }`;
 
 (async () => {
